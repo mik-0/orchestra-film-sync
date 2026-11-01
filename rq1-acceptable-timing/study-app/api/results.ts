@@ -1,8 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-// Single endpoint: POST a trial row (open, for the study app); GET all rows
-// (admin only, bearer token). KISS.
 const sql = neon(process.env.DATABASE_URL!);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -26,20 +24,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
            ${r.offset ?? null}, ${r.triggerOffset ?? null}, ${r.rating ?? null},
            ${r.ratingValue ?? null}, ${r.note ?? ""}, ${r.isoTime ?? null})`;
       return res.status(200).json({ ok: true });
-    }
-
-    if (req.method === "GET") {
-      const auth = (req.headers.authorization || "").replace(/^Bearer\s+/i, "");
-      const token = auth || (req.query.token as string) || "";
-      if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN) {
-        return res.status(401).json({ error: "unauthorized" });
-      }
-      const rows = await sql`
-        SELECT id, session_id, judge, mode, transition, cut_time, base_adjust,
-               ordering, offset_s, trigger_offset, rating, rating_value, note,
-               client_iso, created_at
-        FROM trials ORDER BY created_at DESC LIMIT 10000`;
-      return res.status(200).json({ rows });
     }
 
     return res.status(405).json({ error: "method not allowed" });

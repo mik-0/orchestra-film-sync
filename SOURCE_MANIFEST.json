@@ -57,8 +57,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/.env.example",
-      "bytes": 187,
-      "sha256": "19f025fa680559ee5b7ce91af9a9c1e62d3515e9b123513ddb3e7d762f1236fd"
+      "bytes": 152,
+      "sha256": "a2c634efb8d1f97f0ea5fbf9da4ec25c6f18e63b475b1ff488a8a930f046c47d"
     },
     {
       "path": "rq1-acceptable-timing/study-app/README.md",
@@ -67,8 +67,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/api/results.ts",
-      "bytes": 2323,
-      "sha256": "6b161ae8c71aa4b25124e7423122cfc681788acd6f221798eb68c0ecd5899668"
+      "bytes": 1549,
+      "sha256": "fb984c9a99a435f3f9485aa8968bc7e04f3ecf017d8d8e74b10b369a9478861c"
     },
     {
       "path": "rq1-acceptable-timing/study-app/index.html",
@@ -91,11 +91,6 @@
       "sha256": "b55036049aaee7a4276d13ceb7b08be0e4050c095aa8967b52800a7a6ec2e8c5"
     },
     {
-      "path": "rq1-acceptable-timing/study-app/src/Admin.tsx",
-      "bytes": 4787,
-      "sha256": "f2874adc15f3f24111331f07b9a7bee6232a1a4b8a2f81d3e48b92a4ee79ed85"
-    },
-    {
       "path": "rq1-acceptable-timing/study-app/src/App.tsx",
       "bytes": 20883,
       "sha256": "1e488481b9b6cd9730cfb68542b79b6e672a024642962d7a059a4cddc259618e"
@@ -107,8 +102,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/api.ts",
-      "bytes": 1775,
-      "sha256": "e0862ea76c6963f58015c742ea56a4945ace6f0a22f0e232d3a3a3252732877c"
+      "bytes": 464,
+      "sha256": "111decb4bf0085f85bde0e3f5e03fdeaecd310c57fad69e8eadfdc0945768c7f"
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/config.ts",
@@ -117,8 +112,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/main.tsx",
-      "bytes": 426,
-      "sha256": "58d6c0ea2609b605ca44f7c3b5a3dcd80dd26f675962e16fe3dba13d8775a946"
+      "bytes": 238,
+      "sha256": "41431cb94a112ca05f90ca6037229d09d4bb8ecc1c27ae3bb3740ace8f01d2a6"
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/study.ts",
