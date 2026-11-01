@@ -3,7 +3,7 @@
 The source release excludes:
 
 - All conductor, film and reference recordings, including media embedded in demos, screenshots and thumbnails.
-- Raw acceptability-study sessions, including participant names, IP addresses, notes and session metadata. No redacted participant dataset is included either.
+- Raw acceptability-study responses.
 - Trained model files, pose caches, audio features and downloaded model weights.
 - Frozen tracker traces, reviewed alignment artifacts, experiment outputs and earlier reports.
 - Private repository history, thesis source/PDFs, review comments, meeting transcripts, local environment files and deployment credentials.
