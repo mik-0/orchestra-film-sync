@@ -1,6 +1,6 @@
 # Movement features
 
-`analyze_cues.py` extracts the video pose cache. `analyze_cues_v2.py` compares movement features at selected transition moments. `firebird_timeline.txt` supplies the timeline.
+`analyze_cues.py --process-every 2` reproduces the descriptive analysis's YOLOv8n-pose sampling: every second frame is processed and intermediate frames are interpolated. `analyze_cues_v2.py` compares movement features at selected transition moments. `firebird_timeline.txt` supplies the timeline.
 
 ## Required context
 

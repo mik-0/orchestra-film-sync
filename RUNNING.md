@@ -51,7 +51,13 @@ rq2-conductor-cues/detector/.venv/bin/python rq2-conductor-cues/detector/export_
 
 `recache_keypoints.py` creates the pose cache from your video using YOLOv8s-pose, the model used for the detector experiments. The original cache used Apple MPS; use `--device cpu` where MPS is unavailable. Model weights are downloaded separately. The included annotations refer to the original Firebird recording, so replace them when using different footage.
 
-`cue_characterisation_analysis.py` requires `rq2-conductor-cues/features/analysis_results/analysis_v2.json` and the pose cache. `analyze_cues.py` generates the video project's initial pose cache; `analyze_cues_v2.py` creates the feature comparison. The saved manual labels, in the timeline's segment order, are:
+`cue_characterisation_analysis.py` requires `rq2-conductor-cues/features/analysis_results/analysis_v2.json` and the pose cache. `analyze_cues.py` generates the descriptive analysis's YOLOv8n-pose cache. The original run processed every second frame and interpolated the frames between them:
+
+```sh
+rq2-conductor-cues/detector/.venv/bin/python rq2-conductor-cues/features/analyze_cues.py --video "$FIREBIRD_VIDEO" --process-every 2
+```
+
+`analyze_cues_v2.py` creates the feature comparison. The saved manual labels, in the timeline's segment order, are:
 
 ```text
 1,0,0,0,1,1,0,1,1,1,0,1,0,0,0,1
