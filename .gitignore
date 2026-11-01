@@ -1,0 +1,29 @@
+# Local environments and dependencies
+.env
+.env.*
+!.env.example
+.venv*/
+.cache*/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+.vercel/
+.DS_Store
+# External media, downloaded weights, generated outputs and participant sessions
+*.mp3
+*.wav
+*.mov
+*.mp4
+*.pt
+*.joblib
+*.npz
+*.pdf
+**/output/
+**/analysis_results/
+**/public/media/
+**/results/*.json
+**/results/*.csv
+**/.keypoints_cache*
+tmp/

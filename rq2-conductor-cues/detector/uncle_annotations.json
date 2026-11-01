@@ -1,0 +1,124 @@
+{
+  "video": "FIREBIRD CONDUCTOR BEELD_AUDIO.mov",
+  "fps": 25,
+  "exported": "2026-04-28T08:10:45.048Z",
+  "annotation_provenance": {
+    "annotator": "author",
+    "protocol": "The author clicked whenever he judged that the conductor gave a cue and assigned its musical function.",
+    "role": "operational_ground_truth",
+    "confirmed": "2026-08-18",
+    "timestamp_semantics": "Cue occurrence as judged by the author; preparation onset and ictus were not annotated separately."
+  },
+  "cues": [
+    {
+      "time": 2.5301460000000007,
+      "formatted": "00:02.53",
+      "label": "Start / initial entry"
+    },
+    {
+      "time": 4.598191000000001,
+      "formatted": "00:04.60",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 11.663211,
+      "formatted": "00:11.66",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 13.465947,
+      "formatted": "00:13.47",
+      "label": "Tempo transition"
+    },
+    {
+      "time": 16.326075,
+      "formatted": "00:16.33",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 20.12168,
+      "formatted": "00:20.12",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 23.54025,
+      "formatted": "00:23.54",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 30.306469,
+      "formatted": "00:30.31",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 33.593377,
+      "formatted": "00:33.59",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 44.776155,
+      "formatted": "00:44.78",
+      "label": "Accent / sforzando"
+    },
+    {
+      "time": 50.735728,
+      "formatted": "00:50.74",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 61.228479,
+      "formatted": "01:01.23",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 64.985691,
+      "formatted": "01:04.99",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 67.623439,
+      "formatted": "01:07.62",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 76.094181,
+      "formatted": "01:16.09",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 78.217272,
+      "formatted": "01:18.22",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 83.655917,
+      "formatted": "01:23.66",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 92.5766,
+      "formatted": "01:32.58",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 97.450888,
+      "formatted": "01:37.45",
+      "label": "Section entry cue"
+    },
+    {
+      "time": 103.481779,
+      "formatted": "01:43.48",
+      "label": "Tempo transition"
+    },
+    {
+      "time": 112.969053,
+      "formatted": "01:52.97",
+      "label": "Phrase / dynamic shaping"
+    },
+    {
+      "time": 131.973168,
+      "formatted": "02:11.97",
+      "label": "Accent / sforzando"
+    }
+  ]
+}

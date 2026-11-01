@@ -1,0 +1,71 @@
+name        = "daphnis_chloe"
+description = "Daphnis et Chloé (Ravel) -- AVROTROS vs Shelley"
+
+# Cross-recording orchestral pair. Same algorithmic regime as
+# firebird/yuja_fedorova: LSE features + HMM with beta=32. No
+# hand-marked anchors yet, so per-anchor evaluation is skipped
+# (the dashboard runs fine without them). Mark anchors with:
+#   python scripts/annotate.py \
+#       --live online-dtw/daphnis-et-chloe-avrotros.mp3 \
+#       --ref  online-dtw/daphis-et-chloe-shelley.mp3 \
+#       --anchors output/daphnis_chloe_anchors.json
+# then point `anchors` below at that file.
+
+[audio]
+# NB: the Shelley file is on disk as "daphis-..." (missing 'n'); the
+# path here matches the actual filename, not the corrected spelling.
+live    = "${THESIS_AUDIO_DIR}/daphnis-et-chloe-avrotros.mp3"
+ref     = "${THESIS_AUDIO_DIR}/daphis-et-chloe-shelley.mp3"
+anchors = "output/daphnis_chloe_auto_anchors.json"
+# Hand-marked alternative (35 anchors, first 200 s only):
+#   anchors = "output/daphnis_chloe_anchors.json"
+
+[feature]
+# LSE wins on cross-orchestra material; see firebird preset.
+name  = "lse"
+sr    = 22050
+hop   = 1024
+n_fft = 4096
+
+[hmm]
+# Wide band for the 60-minute ballet. With sw=400 the tracker drifts
+# off-band around the 7-min mark. The 4000-frame band and default
+# skip_mass avoid a permanently pinned reference state, but the corrected
+# dense rerun still spends about two thirds of the shared span beyond
+# one-second error. Advancing is not the same as tracking accurately.
+search_width      = 4000
+beta              = 32.0
+sigma_floor       = 0.8
+sigma_scale       = 8.0
+max_advance       = 4
+min_advance       = 0
+backward_penalty  = 0.001
+
+[oltw]
+# Fallback (--backend oltw). Same retuned cross-orchestra defaults
+# as the firebird preset.
+search_width      = 400
+weight_vertical   = 3.0
+weight_horizontal = 1.0
+weight_diagonal   = 2.0
+silence_rms       = 0.005
+max_advance       = 2
+coast_margin      = 0.65
+backward_penalty  = 0.001
+
+[trim]
+# Disabled: the ref recording opens with ~9 s of room tone / applause,
+# and trim would peel that off and shift the ref timeline. The
+# hand-marked anchors are in *untrimmed* coordinates (anchor[0] is
+# live_t=0, ref_t=0, meaning "start of each file"), so trimming would
+# seed the tracker at a negative ref frame and stall it.
+enabled = false
+pad_sec = 1.0
+
+[stream]
+start_sec       = 0.0
+max_seconds     = 300.0
+chunk_sec       = 0.10
+backend         = "hmm"
+play            = "live"
+cost_resolution = 600

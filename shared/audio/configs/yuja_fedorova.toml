@@ -1,0 +1,73 @@
+# Dashboard preset for Yuja Wang vs Anna Fedorova, Rachmaninoff PC2.
+# Copy this file (cp yuja_fedorova.toml my_pair.toml), edit the paths,
+# tune the knobs, then run:  python scripts/live_dashboard.py --preset my_pair
+# Any CLI flag (e.g. --weight-vertical 3.0) overrides the value here for
+# that one run; pass --save-preset NAME to dump the resulting effective
+# config back to configs/NAME.toml.
+#
+# Historical per-anchor results on output/anchors.json (12 anchors from an
+# early, partial pass):
+#   OLTW chroma_lse w_v=2.0:                  median 0.18 s, 1/12 > 1 s
+#   HMM  lse beta=32 (this):                  median 0.07 s, 1/12 > 1 s  <-- now
+
+name        = "yuja_fedorova"
+description = "Yuja Wang vs Anna Fedorova, Rachmaninoff Piano Concerto No. 2"
+
+[audio]
+# Paths expand environment variables and may also be relative to online-dtw/.
+live    = "${THESIS_AUDIO_DIR}/Yuja Wang_ Rachmaninov Piano Concerto No. 2 in C minor Op. 18 [HD].mp3"
+ref     = "${THESIS_AUDIO_DIR}/Rachmaninoff_ Piano Concerto no.2 op.18 - Anna Fedorova - Complete Live Concert - HD.mp3"
+anchors = "output/yuja_fedorova_auto_anchors.json"
+# Hand-marked alternative (14 anchors, first 641 s only):
+#   anchors = "output/anchors.json"
+
+[feature]
+# LSE = 40-band log-mel energy. HMM+LSE handles the slow piano
+# opening AND the dense orchestral sections better than chroma_lse
+# does (median dropped 0.18 -> 0.07 s on this pair). chroma_lse with
+# OLTW remains the second-best option if you switch backend.
+name  = "lse"
+sr    = 22050
+hop   = 1024
+n_fft = 4096
+
+[hmm]
+# A wide band (4000 ~ 185 s at sr=22050, hop=1024) prevents corridor
+# width alone from ending the path, but it does not make the long-form
+# tracker reliable. The corrected dense rerun in
+# output/audio_failure_yuja_fedorova_dense.json loses durable lock within the first
+# minute and remains wrong for most of the shared musical span. This
+# preset is the measured baseline, not a claim of successful tracking.
+search_width      = 4000
+beta              = 32.0    # peaky emission -- crucial on cross-perf audio
+sigma_floor       = 0.8
+sigma_scale       = 8.0
+max_advance       = 4
+min_advance       = 0
+backward_penalty  = 0.001
+# Default skip_mass = 1e-5 (in HMMCfg) prevents one absorbing-state
+# implementation failure, but it does not repair cumulative wrong-position
+# tracking on this pair.
+
+[oltw]
+# Fallback (--backend oltw). Was the original default with chroma_lse.
+search_width      = 400
+weight_vertical   = 2.0
+weight_horizontal = 1.0
+weight_diagonal   = 2.0
+silence_rms       = 0.001
+max_advance       = 2
+coast_margin      = 0.65
+backward_penalty  = 0.001
+
+[trim]
+enabled = true
+pad_sec = 1.0
+
+[stream]
+start_sec       = 0.0
+max_seconds     = 240.0
+chunk_sec       = 0.10
+backend         = "hmm"
+play            = "live"
+cost_resolution = 600

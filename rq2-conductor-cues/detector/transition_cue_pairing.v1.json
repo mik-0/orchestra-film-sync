@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "approved_primary_pair_whitelist",
+  "approved_by": "author",
+  "approved_at": "2026-08-23T13:11:01.822234+00:00",
+  "scope": "One Firebird production, one conductor, and the nine candidate pairs marked clear in the blinded draft.",
+  "rule": "Only an explicit author decision of paired enters the primary cue-reset experiment. Not-paired, unsure, and unreviewed candidates all abstain.",
+  "sources": {
+    "review": "code/cue-classify/transition_cue_pairing.author_review.json",
+    "review_sha256": "a7975d6ba731e528e0e6ff7ef28ab861c0c987514b80f89df24c89c173aa1fc7",
+    "candidate_draft": "code/cue-classify/transition_cue_mapping.v1.draft.json",
+    "candidate_draft_sha256": "db5435796ad54ba7cb44876ab423d308fa83e0e4eaf0763d87e31a0a79d13c4e"
+  },
+  "primary_pair_whitelist": [
+    {
+      "segment": "133",
+      "target_time_s": 2.92,
+      "cue_id": "cue_01",
+      "cue_time_s": 2.530146,
+      "cue_label": "Start / initial entry"
+    },
+    {
+      "segment": "134",
+      "target_time_s": 16.6,
+      "cue_id": "cue_05",
+      "cue_time_s": 16.326075,
+      "cue_label": "Section entry cue"
+    },
+    {
+      "segment": "137",
+      "target_time_s": 44.84,
+      "cue_id": "cue_10",
+      "cue_time_s": 44.776155,
+      "cue_label": "Accent / sforzando"
+    },
+    {
+      "segment": "143",
+      "target_time_s": 97.56,
+      "cue_id": "cue_19",
+      "cue_time_s": 97.450888,
+      "cue_label": "Section entry cue"
+    }
+  ],
+  "reviewed_not_paired": [
+    {
+      "segment": "135",
+      "cue_id": "cue_07"
+    },
+    {
+      "segment": "136",
+      "cue_id": "cue_09"
+    },
+    {
+      "segment": "145",
+      "cue_id": "cue_21"
+    }
+  ],
+  "reviewed_unsure": [
+    {
+      "segment": "141",
+      "cue_id": "cue_16"
+    },
+    {
+      "segment": "148",
+      "cue_id": "cue_22"
+    }
+  ],
+  "unreviewed_questionable_candidates": [
+    {
+      "segment": "139",
+      "cue_id": "cue_11"
+    },
+    {
+      "segment": "140",
+      "cue_id": "cue_13"
+    },
+    {
+      "segment": "142",
+      "cue_id": "cue_17"
+    },
+    {
+      "segment": "144",
+      "cue_id": "cue_20"
+    }
+  ],
+  "transitions_without_a_candidate_cue": [
+    "138",
+    "146",
+    "147"
+  ]
+}

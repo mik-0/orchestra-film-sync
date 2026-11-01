@@ -1,0 +1,91 @@
+name        = "chopin_black_keys"
+description = "Chopin Etude Op.10 No.5 \"Black Keys\" -- two solo-piano recordings"
+
+# Solo-piano cross-recording pair. Same HMM+LSE+beta=32 default as the
+# orchestral presets; piano material is generally cleaner than orchestral
+# audio (sharp note onsets, no hall reverb smearing harmonics across
+# instruments), so this preset is the natural piano analogue to test
+# whether the algorithmic regime is recording-difficulty-bound or
+# instrumentation-bound. No hand-marked anchors yet -- annotate with:
+#   python scripts/annotate.py \
+#       --live "online-dtw/Chopin - Etude Op. 10 No. 5 (Black Keys).mp3" \
+#       --ref  "online-dtw/Chopin Etude Op.10 No.5 Black Keys  Annique Göttler.mp3" \
+#       --anchors output/chopin_black_keys_anchors.json
+# then point `anchors` below at that file.
+
+[audio]
+# Path filenames are preserved verbatim, including the double space
+# before "Annique" in the second file (matches what's on disk).
+live    = "${THESIS_AUDIO_DIR}/Chopin - Etude Op. 10 No. 5 (Black Keys).mp3"
+ref     = "${THESIS_AUDIO_DIR}/Chopin Etude Op.10 No.5 Black Keys  Annique Göttler.mp3"
+anchors = "output/chopin_black_keys_auto_anchors.json"
+
+[feature]
+# chroma_flux: L2-normalised chroma stacked with normalised spectral
+# flux, both per-frame. Bukey et al. (ISMIR 2024) showed that learned
+# onset-probability streams substantially improve audio-to-score
+# alignment; chroma_flux is the chroma+onset analogue using
+# half-wave-rectified mel-band flux as the onset signal.
+#
+# Why this and not plain chroma: solo piano has sharp note attacks
+# that show up cleanly in spectral flux. Adding the flux dimension to
+# chroma gives the tracker a temporally precise signal alongside the
+# harmonic one, dropping median error from 0.34 s -> 0.04 s with 90 %
+# of anchors inside 1 s on the Black Keys etude.
+#
+# Why this is NOT the orchestral default: chroma_flux on Yuja
+# Rachmaninoff PC2 collapses the tracker entirely (median 1039 s
+# vs 3.1 s for plain LSE). Onset+chroma works on solo piano because
+# the two signals reinforce each other on sharp attacks; on dense
+# orchestral textures, chroma is already noisy and stacking flux on
+# top makes the cost surface more ambiguous, not less. Feature choice
+# is instrumentation-dependent.
+name  = "chroma_flux"
+sr    = 22050
+hop   = 1024
+n_fft = 4096
+
+[hmm]
+search_width      = 400
+beta              = 32.0
+sigma_floor       = 0.8
+sigma_scale       = 8.0
+max_advance       = 4
+min_advance       = 0
+backward_penalty  = 0.001
+# The global skip-mass escape (default 1e-5) introduces noticeable
+# jitter on the Black Keys etude because the chroma features are
+# highly self-similar and the skip mass occasionally lets the tracker
+# hop between near-duplicate frames. Disable here -- the piece is
+# short and there are no absorbing-state stalls to escape.
+skip_mass         = 0.0
+
+[oltw]
+# Fallback (--backend oltw).
+search_width      = 400
+weight_vertical   = 3.0
+weight_horizontal = 1.0
+weight_diagonal   = 2.0
+silence_rms       = 0.005
+max_advance       = 2
+coast_margin      = 0.65
+backward_penalty  = 0.001
+
+[trim]
+# Off by default for the same reason as firebird/daphnis_chloe: any
+# anchors marked with annotate.py will be in untrimmed (raw-file)
+# coordinates, and trim would shift them under the tracker's feet.
+# Flip to true only if you mark anchors at real musical events past
+# any leading silence on either file.
+enabled = false
+pad_sec = 1.0
+
+[stream]
+# The Black Keys etude is short (~1:45-2:00 per recording); 180 s
+# comfortably covers the whole piece.
+start_sec       = 0.0
+max_seconds     = 180.0
+chunk_sec       = 0.10
+backend         = "hmm"
+play            = "live"
+cost_resolution = 600

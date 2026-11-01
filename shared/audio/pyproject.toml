@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "online-dtw"
+version = "0.1.0"
+description = "Online Dynamic Time Warping for real-time audio-to-audio alignment"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "librosa>=0.10",
+  "matplotlib>=3.7",
+  "soundfile>=0.12",
+  "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+sync = ["synctoolbox>=1.4.1,<2"]
+
+[tool.setuptools.packages.find]
+include = ["online_dtw*"]

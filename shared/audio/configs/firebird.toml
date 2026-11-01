@@ -1,0 +1,66 @@
+name        = "firebird"
+description = "Conductor video (Robolab) vs ballet recording, Stravinsky Firebird"
+
+# Per-anchor results on output/firebird_anchors.json (16 anchors):
+#   OLTW chroma_lse w_v=2.0 (yuja defaults):  median 2.45 s, 13/16 > 1 s
+#   OLTW lse w_v=3.0 silence=0.005:           median 0.32 s,  2/16 > 1 s
+#   HMM  lse beta=32  (this):                 median 0.14 s,  0/16 > 1 s  <-- now
+#
+# HMM (Viterbi forward with Kalman tempo) handily beats OLTW here.
+# The Kalman tempo prior keeps the path from racing in ambiguous
+# orchestral sections; cranking beta to 32 makes the emission
+# distribution peaky enough that the right frame wins decisively
+# instead of letting the band collapse on near-misses.
+
+[audio]
+# Set FIREBIRD_MEDIA_DIR to the directory containing the source media.
+live    = "${FIREBIRD_MEDIA_DIR}/FIREBIRD CONDUCTOR BEELD_AUDIO.mov"
+ref     = "${THESIS_AUDIO_DIR}/firebird_the_ballet.mp3"
+anchors = "output/firebird_auto_anchors.json"
+# Hand-marked alternative (16 anchors, first 71 s only):
+#   anchors = "output/firebird_anchors.json"
+
+[feature]
+# LSE (40-band log-mel energy) alone beats chroma_lse on cross-
+# recording orchestral audio. Onsets survive across orchestras /
+# halls; chroma is noisier because tuning + reverb differ.
+name  = "lse"
+sr    = 22050
+hop   = 1024
+n_fft = 4096
+
+[hmm]
+search_width      = 400
+# beta = emission temperature in b_j = exp(-beta * d). Default 8 is
+# too soft for cross-recording: many ref frames score similarly and
+# the posterior smears across the band. 32 gives a sharply-peaked
+# emission so the right frame dominates.
+beta              = 32.0
+sigma_floor       = 0.8
+sigma_scale       = 8.0
+max_advance       = 4
+min_advance       = 0
+backward_penalty  = 0.001
+
+[oltw]
+# Kept for reference / fallback (--backend oltw). Tuned for this pair.
+search_width      = 400
+weight_vertical   = 3.0
+weight_horizontal = 1.0
+weight_diagonal   = 2.0
+silence_rms       = 0.005
+max_advance       = 2
+coast_margin      = 0.65
+backward_penalty  = 0.001
+
+[trim]
+enabled = false
+pad_sec = 1.0
+
+[stream]
+start_sec       = 0.0
+max_seconds     = 140.0
+chunk_sec       = 0.10
+backend         = "hmm"
+play            = "live"
+cost_resolution = 600
