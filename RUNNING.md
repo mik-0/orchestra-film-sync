@@ -60,6 +60,6 @@ npm ci
 npm run dev
 ```
 
-The UI saves locally and can export JSON/CSV. No participant responses are supplied. The optional API source requires your own database and environment configuration; `.env.example` contains placeholders only. No database schema or hosting configuration is included. The endpoint accepts trial POSTs without authentication and records the client IP. Add authentication and review the data collected before hosting it.
+The UI saves locally and can export JSON/CSV. No participant responses are supplied. The optional API source requires your own database and environment configuration; `.env.example` contains placeholders only. No database schema or hosting configuration is included. The endpoint accepts trial POSTs without authentication. Add authentication and review the data collected before hosting it.
 
 The analysis scripts in `rq1-acceptable-timing/analysis/` expect the original session format, but the original session files are excluded. They cannot reproduce the thesis ratings without separately available, authorised data.

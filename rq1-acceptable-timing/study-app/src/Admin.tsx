@@ -6,7 +6,6 @@ interface SessionGroup {
   sessionId: string;
   judge: string;
   mode: string;
-  ip: string;
   count: number;
   last: string;
 }
@@ -43,7 +42,7 @@ export default function Admin() {
     for (const r of rows) {
       const g = map.get(r.session_id) ?? {
         sessionId: r.session_id, judge: r.judge ?? "", mode: r.mode ?? "",
-        ip: r.ip ?? "", count: 0, last: r.created_at,
+        count: 0, last: r.created_at,
       };
       g.count++;
       if (r.created_at > g.last) g.last = r.created_at;
@@ -86,7 +85,7 @@ export default function Admin() {
       <div className="card">
         <h3>Sessies ({sessions.length})</h3>
         <table>
-          <thead><tr><th>Sessie</th><th>Deelnemer</th><th>Modus</th><th>IP</th><th>Proeven</th><th>Laatste</th><th>Export</th></tr></thead>
+          <thead><tr><th>Sessie</th><th>Deelnemer</th><th>Modus</th><th>Proeven</th><th>Laatste</th><th>Export</th></tr></thead>
           <tbody>
             {sessions.map((s) => {
               const sessionRows = rows.filter((r) => r.session_id === s.sessionId);
@@ -95,7 +94,6 @@ export default function Admin() {
                   <td>{s.sessionId}</td>
                   <td>{s.judge}</td>
                   <td>{s.mode}</td>
-                  <td>{s.ip}</td>
                   <td>{s.count}</td>
                   <td>{new Date(s.last).toLocaleString("nl-NL")}</td>
                   <td>

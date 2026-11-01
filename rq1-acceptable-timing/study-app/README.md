@@ -4,4 +4,4 @@ Run `npm ci` and `npm run dev` in this directory after preparing authorised medi
 
 ## Required context
 
-The optional database endpoint is research code: trial POSTs are unauthenticated and it records client IP. No deployment, database or original participant data is included.
+The optional database endpoint is research code: trial POSTs are unauthenticated. No deployment, database or original participant data is included.

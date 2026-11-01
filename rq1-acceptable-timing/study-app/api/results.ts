@@ -10,9 +10,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method === "POST") {
       const r = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
       if (!r || !r.sessionId) return res.status(400).json({ error: "missing sessionId" });
-      // Client IP, determined server-side (not trusting the payload).
-      const xff = (req.headers["x-forwarded-for"] as string) || "";
-      const ip = xff.split(",")[0].trim() || (req.headers["x-real-ip"] as string) || null;
       // Idempotent per (session, trial): a revised answer replaces the prior row
       // for the same ordering instead of appending a duplicate. Atomic via a
       // data-modifying CTE.
@@ -22,12 +19,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         )
         INSERT INTO trials
           (session_id, judge, mode, transition, cut_time, base_adjust, ordering,
-           offset_s, trigger_offset, rating, rating_value, note, client_iso, ip)
+           offset_s, trigger_offset, rating, rating_value, note, client_iso)
         VALUES
           (${r.sessionId}, ${r.judge ?? null}, ${r.mode ?? null}, ${r.transition ?? null},
            ${r.cutTime ?? null}, ${r.baseAdjust ?? null}, ${r.order ?? null},
            ${r.offset ?? null}, ${r.triggerOffset ?? null}, ${r.rating ?? null},
-           ${r.ratingValue ?? null}, ${r.note ?? ""}, ${r.isoTime ?? null}, ${ip})`;
+           ${r.ratingValue ?? null}, ${r.note ?? ""}, ${r.isoTime ?? null})`;
       return res.status(200).json({ ok: true });
     }
 
@@ -37,7 +34,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN) {
         return res.status(401).json({ error: "unauthorized" });
       }
-      const rows = await sql`SELECT * FROM trials ORDER BY created_at DESC LIMIT 10000`;
+      const rows = await sql`
+        SELECT id, session_id, judge, mode, transition, cut_time, base_adjust,
+               ordering, offset_s, trigger_offset, rating, rating_value, note,
+               client_iso, created_at
+        FROM trials ORDER BY created_at DESC LIMIT 10000`;
       return res.status(200).json({ rows });
     }
 

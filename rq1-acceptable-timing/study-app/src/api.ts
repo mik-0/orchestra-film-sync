@@ -29,7 +29,6 @@ export interface DbRow {
   rating_value: number | null;
   note: string | null;
   client_iso: string | null;
-  ip: string | null;
   created_at: string;
 }
 

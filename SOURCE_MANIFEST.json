@@ -17,8 +17,8 @@
     },
     {
       "path": "RUNNING.md",
-      "bytes": 4107,
-      "sha256": "a63776d5e68fb60105da8c7e3a271551e8a92bdb5e55d4f1e100e3a1fc0489c6"
+      "bytes": 4081,
+      "sha256": "fe2beb997ae2e62d27a4359b6d24d0073d5a040ea976cc38fa2c0b9b4d8205e5"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -62,13 +62,13 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/README.md",
-      "bytes": 394,
-      "sha256": "d0e36d718fb59eee848bd6081db61c7dae14bdb1b02a96233be7292452ba876c"
+      "bytes": 369,
+      "sha256": "eab950a6c6ff37dd5e2428513b20098c792b6aaf6dfd9f91b0ae0d925185847c"
     },
     {
       "path": "rq1-acceptable-timing/study-app/api/results.ts",
-      "bytes": 2368,
-      "sha256": "a97caa86f021e807497a696bd954d8a3b52250812d5c893f77a71c89cdceb1e8"
+      "bytes": 2323,
+      "sha256": "6b161ae8c71aa4b25124e7423122cfc681788acd6f221798eb68c0ecd5899668"
     },
     {
       "path": "rq1-acceptable-timing/study-app/index.html",
@@ -92,8 +92,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/Admin.tsx",
-      "bytes": 4862,
-      "sha256": "61f99b234a920de8f35fac4b642d512b8edf12322c5e326864f910dbdd87a685"
+      "bytes": 4787,
+      "sha256": "f2874adc15f3f24111331f07b9a7bee6232a1a4b8a2f81d3e48b92a4ee79ed85"
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/App.tsx",
@@ -107,8 +107,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/api.ts",
-      "bytes": 1796,
-      "sha256": "7127ccab442efc7f6d63307bebbe422e739b0e22486b61bc3a4816cfbd5dcaae"
+      "bytes": 1775,
+      "sha256": "e0862ea76c6963f58015c742ea56a4945ace6f0a22f0e232d3a3a3252732877c"
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/config.ts",
