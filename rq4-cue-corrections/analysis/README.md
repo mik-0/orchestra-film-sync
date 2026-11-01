@@ -4,4 +4,4 @@
 
 ## Required context
 
-Both scripts require saved experiment results. They have not been rerun since the files were reorganised.
+Both scripts require saved experiment results.

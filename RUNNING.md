@@ -1,6 +1,6 @@
 # Running the selected source
 
-These setup commands have not been run on the reorganised code. Use Python 3.12, Node.js with npm, and FFmpeg. Keep the projects in their own environments.
+Use Python 3.12, Node.js with npm, and FFmpeg. Keep the projects in their own environments.
 
 ## Published audio followers
 

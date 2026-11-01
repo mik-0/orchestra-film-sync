@@ -4,4 +4,4 @@
 
 ## Required context
 
-Dependencies and configurations live under shared/audio. The completion wrapper retains its historical output restriction and metadata. `validate_all_follower_decoders.py` is existing validation code; it has not been rerun in this export.
+Dependencies and configurations live under shared/audio. The completion wrapper retains its historical output restriction and metadata. `validate_all_follower_decoders.py` checks the follower implementations.

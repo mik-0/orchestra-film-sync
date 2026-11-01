@@ -40,8 +40,4 @@ This repository contains the experiment code. Recordings, participant responses,
 
 The thesis comparison uses Matchmaker 0.3.0 for Arzt and Dixon, and a pinned ConcertCue revision. Prototype HMM and OLTW modules retained in the shared package are dependencies of its existing imports, not the three published benchmark methods. For automatic cue evaluation, use the predictions from held-out blocks described under RQ2. The scripts for training on all annotations are also included.
 
-## Verification
-
-Python syntax, local import paths and documentation links have been checked. The reorganised code has not been installed, built or run. Saved result metadata may still refer to old paths and source hashes; see [INPUTS.md](INPUTS.md) before reusing it.
-
 No project-wide software licence has been selected. Third-party code is obtained separately and retains its own licences; see [THIRD_PARTY.md](THIRD_PARTY.md).

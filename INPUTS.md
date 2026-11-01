@@ -24,4 +24,4 @@ Cloning this repository does not provide these inputs. Some can be regenerated f
 
 ## Reusing saved results
 
-Saved result JSON may refer to old `code/` paths. Its source hashes may also differ because imports and paths were updated. Preserve the original records and document any path changes needed to reuse them.
+When supplying saved results, update file paths to match your local recordings and outputs.

@@ -7,18 +7,18 @@
     },
     {
       "path": "INPUTS.md",
-      "bytes": 2347,
-      "sha256": "cd720ffa8b76c8d4e329780af1b7db51c3baeda912775868204c10cce2e88d45"
+      "bytes": 2233,
+      "sha256": "cdbe9cca682e56afa428c701df664798e15ed968b8e05e89fc4f083c58d55eb0"
     },
     {
       "path": "README.md",
-      "bytes": 2894,
-      "sha256": "8849473b8534661df85d661e02acb3ef6c3fae518531aba809727b3323a3f100"
+      "bytes": 2624,
+      "sha256": "aebde11bba294cb6a522e3b331f272aa362141f345bacaed727a41231dbc38db"
     },
     {
       "path": "RUNNING.md",
-      "bytes": 4171,
-      "sha256": "2c9c6eccf13a27b41df98dbc13acd8e8adcb5e0821e1dba649a3333fcb82fd51"
+      "bytes": 4107,
+      "sha256": "a63776d5e68fb60105da8c7e3a271551e8a92bdb5e55d4f1e100e3a1fc0489c6"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -312,8 +312,8 @@
     },
     {
       "path": "rq3-audio-tracking/benchmark/README.md",
-      "bytes": 560,
-      "sha256": "4224eb955f5c819e96b72e879fe9f3af7eb086bbef45c81ab91816e49c933030"
+      "bytes": 530,
+      "sha256": "2a77ec0c4de3e714dbcfa54e502d41066f887a1b3e93b6b8cbdcd9e648cc6a83"
     },
     {
       "path": "rq3-audio-tracking/benchmark/compare_published_trackers.py",
@@ -347,8 +347,8 @@
     },
     {
       "path": "rq4-cue-corrections/analysis/README.md",
-      "bytes": 319,
-      "sha256": "c0b6ea2896a780c53a991ccecce92b1fe26b7705e02713bb318f776a4a31e1b7"
+      "bytes": 260,
+      "sha256": "739ec00d4312daaf4f02b2341abdb9aad1f9fd71a7fe2273e92ca71f46dea376"
     },
     {
       "path": "rq4-cue-corrections/analysis/audit_all_follower_cues.py",
@@ -407,8 +407,8 @@
     },
     {
       "path": "shared/README.md",
-      "bytes": 722,
-      "sha256": "30d4767316cef8c5870169c53fbb158381ba11b09923b3e8031a97ac4ce0dc23"
+      "bytes": 645,
+      "sha256": "3f8ee3486193892dd2be3fff1c68c7ed66264c37085b101ffcdbe36b83026cec"
     },
     {
       "path": "shared/analysis/README.md",
