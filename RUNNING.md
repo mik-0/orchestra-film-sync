@@ -8,7 +8,7 @@ From the repository root, install `uv`, then prepare the pinned external impleme
 
 ```sh
 python3 rq3-audio-tracking/benchmark/setup_published_baselines.py
-uv pip install --python shared/audio/.cache-published-baselines/matchmaker-venv/bin/python -e 'shared/audio[sync]'
+uv pip install --python shared/audio/.cache-published-baselines/matchmaker-venv/bin/python -e shared/audio
 export THESIS_AUDIO_DIR="/path/to/audio"
 export FIREBIRD_MEDIA_DIR="/path/to/firebird-media"
 ```
@@ -29,17 +29,27 @@ Final analysis entry points:
 
 These scripts require the saved experiment inputs listed in [INPUTS.md](INPUTS.md).
 
+## Offline alignment
+
+Sync Toolbox uses a separate Python 3.11 environment because its pandas dependency does not install with the documented Python 3.12 setup.
+
+```sh
+uv venv --python 3.11 shared/audio/.venv-sync
+uv pip install --python shared/audio/.venv-sync/bin/python -e 'shared/audio[sync]'
+shared/audio/.venv-sync/bin/python rq3-audio-tracking/alignment/sync_anchors.py --help
+```
+
 ## Conductor cues
 
 ```sh
 python3 -m venv rq2-conductor-cues/detector/.venv
 rq2-conductor-cues/detector/.venv/bin/python -m pip install -r rq2-conductor-cues/detector/requirements.txt
 export FIREBIRD_VIDEO="/path/to/conductor-video.mov"
-rq2-conductor-cues/detector/.venv/bin/python rq2-conductor-cues/detector/recache_keypoints.py --video "$FIREBIRD_VIDEO" --device cpu
+rq2-conductor-cues/detector/.venv/bin/python rq2-conductor-cues/detector/recache_keypoints.py --video "$FIREBIRD_VIDEO" --device mps
 rq2-conductor-cues/detector/.venv/bin/python rq2-conductor-cues/detector/export_visual_blocked_detector.py
 ```
 
-`recache_keypoints.py` creates the pose cache from your video. Its default model is recorded in the script; model weights are downloaded separately. The included annotations refer to the original Firebird recording, so replace them when using different footage.
+`recache_keypoints.py` creates the pose cache from your video using YOLOv8s-pose, the model used for the detector experiments. The original cache used Apple MPS; use `--device cpu` where MPS is unavailable. Model weights are downloaded separately. The included annotations refer to the original Firebird recording, so replace them when using different footage.
 
 `cue_characterisation_analysis.py` requires `rq2-conductor-cues/features/analysis_results/analysis_v2.json` and the pose cache. `analyze_cues.py` generates the video project's initial pose cache; `analyze_cues_v2.py` creates the feature comparison. The saved manual labels, in the timeline's segment order, are:
 
@@ -60,6 +70,6 @@ npm ci
 npm run dev
 ```
 
-The UI saves locally and can export JSON/CSV. No participant responses are supplied. The optional API source requires your own database and environment configuration; `.env.example` contains placeholders only. No database schema or hosting configuration is included. The endpoint accepts trial POSTs without authentication. Add authentication and review the data collected before hosting it.
+The UI saves locally and can export JSON/CSV. No participant responses are supplied. The optional API source requires your own database and environment configuration; `.env.example` contains placeholders only. No database schema is included. The endpoint accepts trial POSTs without authentication. Add authentication and review the data collected before hosting it.
 
 The analysis scripts in `rq1-acceptable-timing/analysis/` expect the original session format, but the original session files are excluded. They cannot reproduce the thesis ratings without separately available, authorised data.

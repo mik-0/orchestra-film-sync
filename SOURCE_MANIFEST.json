@@ -2,8 +2,8 @@
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 395,
-      "sha256": "9cf43024f7468e32f8d617411da38cae09b886c58c6bd9f74af6d0014d3db817"
+      "bytes": 407,
+      "sha256": "0a10cbb0e61efd48357a3c619b1b5d79e6400330960685e030ee706d2223e01b"
     },
     {
       "path": "INPUTS.md",
@@ -17,8 +17,8 @@
     },
     {
       "path": "RUNNING.md",
-      "bytes": 4081,
-      "sha256": "fe2beb997ae2e62d27a4359b6d24d0073d5a040ea976cc38fa2c0b9b4d8205e5"
+      "bytes": 4536,
+      "sha256": "15ff7150fcca89c84c5c4852301752422ef64a5c99f9b7ee58e6db5d81f126b2"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -42,13 +42,13 @@
     },
     {
       "path": "rq1-acceptable-timing/analysis/plot_session_curve.py",
-      "bytes": 3881,
-      "sha256": "bda786edf3863873ada2b96f1612d21e5d828c73211c3f0edfbcf89bcd1e3fa6"
+      "bytes": 3934,
+      "sha256": "6ea5c61fc34efa7e4b171f05760a2362507b3b8331c35a063aa4d0640af04a46"
     },
     {
       "path": "rq1-acceptable-timing/analysis/plot_session_heatmap.py",
-      "bytes": 3348,
-      "sha256": "6ad287a51143ec5f034a25a75a065e7488aa20c3d83bb28a08c28010bb13e3df"
+      "bytes": 3401,
+      "sha256": "9434c1ea8276fcf445c97481bc7eced5cbae80793a5f3ad843158fb48ca2aeed"
     },
     {
       "path": "rq1-acceptable-timing/analysis/scene_dependence.py",
@@ -92,8 +92,8 @@
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/App.tsx",
-      "bytes": 20883,
-      "sha256": "1e488481b9b6cd9730cfb68542b79b6e672a024642962d7a059a4cddc259618e"
+      "bytes": 20876,
+      "sha256": "34b81f10ebe59454885884c6e3fd6c594d6125e66ad9738c68b0156062476bea"
     },
     {
       "path": "rq1-acceptable-timing/study-app/src/Player.tsx",
@@ -197,13 +197,13 @@
     },
     {
       "path": "rq2-conductor-cues/detector/recache_keypoints.py",
-      "bytes": 3730,
-      "sha256": "a0c228d755b2c068f9306e2aae7a287fdb92d021e36f54b17e5216b3bbcb87ab"
+      "bytes": 3720,
+      "sha256": "c3352e9481d165458cd8e4f0f0ed5f4bafd6b3e27c4107314a00100dd081e0ec"
     },
     {
       "path": "rq2-conductor-cues/detector/requirements.txt",
-      "bytes": 136,
-      "sha256": "49af4a901dc8c959c6b27686361f11aa000d1bf783cf87eeeaef4579e259880e"
+      "bytes": 197,
+      "sha256": "e1c9e325c972edc9ba204d63372758a39c541c82cdafa1b8c4f9cbcb7452fcca"
     },
     {
       "path": "rq2-conductor-cues/detector/rf_v2_rich.py",
@@ -243,7 +243,7 @@
     {
       "path": "rq2-conductor-cues/features/requirements.txt",
       "bytes": 32,
-      "sha256": "11576d2a8eac43f9d89f4c6b468d53f43b58b7e0d434883544facd28d61da797"
+      "sha256": "7852e344e878040e6029dcef2821db173fe1ae3f9dc25074bb9e89efdf8eb8dd"
     },
     {
       "path": "rq3-audio-tracking/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "rq3-audio-tracking/analysis/analyse_all_followers.py",
-      "bytes": 15384,
-      "sha256": "685e8fbf091aa464c8cbdf132d8c4ea7b0aad3efad7ea02b3148b2568112e25d"
+      "bytes": 15474,
+      "sha256": "53cbc7d89242b62bed492243850afbe2b6b919c246987b638ba4faacf857af4a"
     },
     {
       "path": "rq3-audio-tracking/analysis/audio_failure_threshold_sensitivity.py",
@@ -287,8 +287,8 @@
     },
     {
       "path": "rq3-audio-tracking/analysis/audit_all_follower_results.py",
-      "bytes": 4134,
-      "sha256": "386a16a5a289196c5eee0cd02d4789e6fa88604822a477372b86ebb629494ae2"
+      "bytes": 4154,
+      "sha256": "6fca4bd9d416dd4938004054eb2e8811573d5495863ad3eb2d19aa0192a3fcde"
     },
     {
       "path": "rq3-audio-tracking/analysis/reanalyse_audio_energy.py",
@@ -302,8 +302,8 @@
     },
     {
       "path": "rq3-audio-tracking/analysis/summarize_all_followers.py",
-      "bytes": 5989,
-      "sha256": "367bcb809faf76b3aa4a2663031ee5dc1f214f81709f059d56e2533d578eb1c3"
+      "bytes": 6047,
+      "sha256": "916f8af2ca72cfbd95600115307f9ca694f1c7aefa4756496737da39f3b4d79d"
     },
     {
       "path": "rq3-audio-tracking/benchmark/README.md",
@@ -333,7 +333,7 @@
     {
       "path": "rq3-audio-tracking/benchmark/validate_all_follower_decoders.py",
       "bytes": 3124,
-      "sha256": "1a95643187dea2f2719605d80697435650242fba9d85632f186d88fb44dd7dcf"
+      "sha256": "eeb7de7a35521ee7786a6af15d51348747cc8b125021df723ebcaec5655a5910"
     },
     {
       "path": "rq4-cue-corrections/README.md",
@@ -357,13 +357,13 @@
     },
     {
       "path": "rq4-cue-corrections/experiments/README.md",
-      "bytes": 417,
-      "sha256": "8106397b4e1e8b198468a01905282bc68d111cf679926742334657183d67f83c"
+      "bytes": 603,
+      "sha256": "2559ed7ba48c00b0a3296cbce92f29a62f6a64b45f8003151f59f47d1c765323"
     },
     {
       "path": "rq4-cue-corrections/experiments/run_all_follower_cue_corrections.py",
-      "bytes": 13103,
-      "sha256": "8845d13885851f68278be242092565744960d288bcce9f3a0c7d866abe209255"
+      "bytes": 14277,
+      "sha256": "593f0ed09eb79aad24def54f7e1578332e22386de6d1fc10344d11eeb3f01987"
     },
     {
       "path": "rq4-cue-corrections/experiments/visual_all_cue_resets.py",
@@ -422,8 +422,8 @@
     },
     {
       "path": "shared/audio/README.md",
-      "bytes": 485,
-      "sha256": "7f2cb0d12a6194b8ac73f894b11f319fa2e5a6c52272626d04e7fa25794bda25"
+      "bytes": 558,
+      "sha256": "4c25bb9661c5681d234852484189e74cd33733856ee3bd41945e186939c0b8b6"
     },
     {
       "path": "shared/audio/configs/chopin_black_keys.toml",
@@ -532,8 +532,8 @@
     },
     {
       "path": "shared/project_paths.py",
-      "bytes": 3062,
-      "sha256": "0948bb43dd6f47da80e4a23dedbbea555e83f9a54907b862e5e1a29409d686f1"
+      "bytes": 3399,
+      "sha256": "f4c06e797fad8000bb18ecccc8289dcebeb25aa79006654df35e533eac3762ba"
     }
   ]
 }

@@ -50,3 +50,14 @@ def activate():
 def script_path(name):
     """Find a relocated entry script when recording provenance or invoking it."""
     return ROOT / SCRIPT_PATHS[name]
+
+
+def artifact_path(value):
+    """Resolve saved result paths from either the current or original layout."""
+    path = Path(value)
+    if path.is_absolute():
+        return path
+    old_audio = Path("code/online-dtw")
+    if path.is_relative_to(old_audio):
+        return AUDIO_ROOT / path.relative_to(old_audio)
+    return ROOT / path

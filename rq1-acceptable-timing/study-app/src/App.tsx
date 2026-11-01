@@ -390,7 +390,7 @@ export default function App() {
   return (
     <div className="wrap">
       <h1>Sessie afgerond</h1>
-      <p className="lede">Resultaten zijn lokaal en in de database opgeslagen. Exporteer ze als back-up.</p>
+      <p className="lede">Resultaten zijn lokaal opgeslagen. Download een kopie om ze te bewaren.</p>
 
       <div className="export">
         <button className="btn-primary" onClick={() => download(`studie_${sessionId || Date.now()}.csv`, toCSV(results), "text/csv")}>Download CSV</button>

@@ -70,11 +70,12 @@ def main():
     plt.rcParams.update({'font.family':'STIXGeneral','font.size':11,'axes.titlesize':12,
                          'axes.labelsize':11,'xtick.labelsize':10,'ytick.labelsize':10})
     image_dir=study.ROOT/'results/figures'
+    image_dir.mkdir(parents=True,exist_ok=True)
     fig,axes=plt.subplots(4,3,figsize=(8.3,8),layout='constrained')
     for i,pair in enumerate(PAIRS):
         for j,method in enumerate(METHODS):
             d=records[pair,method]
-            trace=study.ROOT/d['inputs'][1]['path']
+            trace=study.artifact_path(d['inputs'][1]['path'])
             with np.load(trace) as z:
                 t=z['sample_t']/60;e=z['sample_error_s']
             ax=axes[i,j];ax.plot(t,e,color=COLORS[i],lw=.85)

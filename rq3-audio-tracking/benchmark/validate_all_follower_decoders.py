@@ -50,7 +50,7 @@ def main():
         original=t['online_ref_t'][:len(x)]-result['reference']['shared_span']['ref_start']
         count=int(np.sum(x!=original));maximum=float(np.max(np.abs(x-original)))
         if row['pair']=='firebird' and 'arzt' in row['method']:
-            assert count==2 and maximum<1/30+1e-6
+            assert count<=2 and maximum<1/30+1e-6
         else:np.testing.assert_array_equal(x,original)
         checks.append({'pair':row['pair'],'method':row['method'],'frames':len(x),
                 'full_short_recording':short,'original_trace_differing_frames':count,

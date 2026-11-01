@@ -5,3 +5,5 @@
 ## Required context
 
 The three-method runner imports RQ3 decoder helpers and RQ5 scoring. It requires the saved detector, landmark, alignment, trace and feature-cache inputs listed in INPUTS.md.
+
+The runner records differences from the saved Dixon paths and transition rows in its output. Add `--strict-reproduction` to stop on those differences instead of completing the new run.

@@ -27,3 +27,4 @@ dist/
 **/results/*.csv
 **/.keypoints_cache*
 tmp/
+*.egg-info/

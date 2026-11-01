@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Re-cache keypoints from the Firebird video using a larger YOLO model.
+"""Cache keypoints from the Firebird video using YOLOv8s-pose.
 
 The previously cached `.keypoints_cache.npz` was built with yolov8n-pose
 (nano, smallest/noisiest). This script re-runs detection with a larger,
 more accurate pose model and saves a fresh cache.
 
 Usage:
-    python3 recache_keypoints.py --model yolov8x-pose.pt
+    python3 recache_keypoints.py --model yolov8s-pose.pt
 """
 
 from __future__ import annotations
@@ -48,7 +48,7 @@ def main():
         required=VIDEO is None,
         help="Conductor video (or set FIREBIRD_VIDEO/FIREBIRD_MEDIA_DIR).",
     )
-    parser.add_argument("--model", default="yolov8x-pose.pt",
+    parser.add_argument("--model", default="yolov8s-pose.pt",
                         help="YOLOv8 pose model (n/s/m/l/x)")
     parser.add_argument("--imgsz", type=int, default=640,
                         help="Inference resolution (default 640)")

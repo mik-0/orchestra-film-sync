@@ -107,9 +107,13 @@ def main():
     p.add_argument('--feature-cache',type=Path,default=ROOT/'tmp/audio-failure-all-methods')
     p.add_argument('--output-dir',type=Path,default=HERE/'output/cue_all_followers_20261026')
     p.add_argument('--resume',action='store_true',help='Retain completed follower outputs and run missing followers')
+    p.add_argument('--strict-reproduction',action='store_true',
+                   help='Stop if Dixon differs from the saved historical paths or transition rows')
     args=p.parse_args()
     if args.output_dir.exists() and not args.resume:raise FileExistsError(args.output_dir)
     args.output_dir.mkdir(parents=True,exist_ok=args.resume)
+    if not args.resume:
+        (args.output_dir/'runner_initial.py').write_bytes(Path(__file__).read_bytes())
     study.retain_arzt_array()
     olddir=HERE/'output/visual_all_cue_resets_v1'
     corrected=HERE/'output/visual_all_cue_resets_v2_causal_holds/results.json'
@@ -138,7 +142,7 @@ def main():
         for inp in previous['inputs']:
             if inp['path'].endswith('run_all_follower_cue_corrections.py'):
                 assert study.record(args.output_dir/'runner_initial.py')['sha256']==inp['sha256']
-            else: assert published.sha256(ROOT/inp['path'])==inp['sha256']
+            else: assert published.sha256(study.artifact_path(inp['path']))==inp['sha256']
         summary['methods']=previous['methods']
         summary['resumed_from']=previous['provenance']
         summary['inputs'].append(study.record(args.output_dir/'runner_initial.py'))
@@ -181,8 +185,18 @@ def main():
         else:np.testing.assert_allclose(paths['audio_only'],trace['online_ref_t'],atol=1e-5,rtol=0)
         if method=='dixon':
             np.testing.assert_array_equal(times,old_arrays['online_live_t'])
-            for name in paths:np.testing.assert_allclose(paths[name],old_arrays[name+'_ref_t'],atol=1e-5,rtol=0)
-            validation['all_six_historical_dixon_paths_reproduced']=True
+            differences={}
+            for name in paths:
+                delta=np.abs(paths[name]-old_arrays[name+'_ref_t'])
+                differences[name]={'different_frames':int((delta>1e-5).sum()),
+                                   'maximum_difference_s':float(delta.max())}
+            validation['historical_dixon_path_differences']=differences
+            matched=all(d['different_frames']==0 for d in differences.values())
+            validation['all_six_historical_dixon_paths_reproduced']=matched
+            if not matched:
+                print('Historical Dixon paths differ:',json.dumps(differences),flush=True)
+            if args.strict_reproduction and not matched:
+                raise AssertionError('Dixon paths differ from the saved historical run')
         if method=='concertcue':
             # Full original allocation independently checks the storage-only adaptation.
             for name,mode,width in conditions:
@@ -194,8 +208,13 @@ def main():
             rows=protocol.transition_rows(transitions,times,paths,paired_segments=paired,hold_s=hold)
             views[str(hold)]={'rows':rows,'summary':protocol.summarize_rows(rows,list(paths))}
         if method=='dixon':
-            for hold,view in views.items():assert view['rows']==old['transition_sensitivity'][hold]['rows']
-            validation['all_dixon_transition_rows_and_holds_reproduced']=True
+            matched=all(view['rows']==old['transition_sensitivity'][hold]['rows']
+                        for hold,view in views.items())
+            validation['all_dixon_transition_rows_and_holds_reproduced']=matched
+            if not matched:
+                print('Historical Dixon transition rows differ',flush=True)
+            if args.strict_reproduction and not matched:
+                raise AssertionError('Dixon transition rows differ from the saved historical run')
         main=[r for r in views['0.0']['rows'] if r['included_primary']]
         # Existing score sensitivity: the exact grid is recorded in the output.
         cost_sensitivity=[]

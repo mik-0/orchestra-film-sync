@@ -34,10 +34,10 @@ def main():
         energy=t['sample_energy_ratio']
         if method=='concertcue':
             assert 'shared_audio_level' in d
-            with np.load(study.ROOT/d['shared_audio_level']['source']['path']) as z:
+            with np.load(study.artifact_path(d['shared_audio_level']['source']['path'])) as z:
                 energy=z['sample_energy_ratio']
         for item in d['inputs']:
-            assert study.published.sha256(study.ROOT/item['path'])==item['sha256']
+            assert study.published.sha256(study.artifact_path(item['path']))==item['sha256']
         rho=float(spearmanr(np.abs(t['sample_error_s']),energy).statistic)
         for c in d['correlations']:
             np.testing.assert_allclose(c['rho'],rho,atol=1e-14)

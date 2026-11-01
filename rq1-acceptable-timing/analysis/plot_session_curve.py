@@ -96,6 +96,7 @@ def main() -> None:
     ax.spines[["top", "right"]].set_visible(False)
     ax.legend(frameon=False, loc="lower center")
     fig.tight_layout()
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUTPUT, dpi=200, bbox_inches="tight")
     plt.close(fig)
     print(f"wrote {OUTPUT}")

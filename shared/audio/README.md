@@ -1,6 +1,6 @@
 # Shared audio package
 
-This directory contains pyproject.toml, requirements.txt, recording presets, and the online_dtw Python package. Install it with `pip install -e shared/audio` from the repository root. Add `[sync]` for Sync Toolbox.
+This directory contains pyproject.toml, requirements.txt, recording presets, and the online_dtw Python package. Install it with `pip install -e shared/audio` from the repository root. For Sync Toolbox, use the separate Python 3.11 environment described in [RUNNING.md](../../RUNNING.md).
 
 ## Required context
 

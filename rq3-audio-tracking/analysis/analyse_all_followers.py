@@ -16,6 +16,7 @@ for _layout_root in _LayoutPath(__file__).resolve().parents:
         break
 else:
     raise RuntimeError("Cannot locate shared/project_paths.py")
+from project_paths import artifact_path
 from project_paths import ROOT as _REPO_ROOT, AUDIO_ROOT as _AUDIO_ROOT, activate as _activate_layout, script_path as _script_path
 _activate_layout()
 
@@ -65,6 +66,7 @@ def write(path, payload):
 
 
 def record(path):
+    path = Path(path).resolve()
     return {'path': str(path.relative_to(ROOT)), 'sha256': published.sha256(path)}
 
 
@@ -80,14 +82,14 @@ def provenance():
 
 
 def load_case(row):
-    path = ROOT / row['source']
+    path = artifact_path(row['source'])
     result = json.loads(path.read_text())
     trace_path = path.with_name(path.stem+'_trace.npz')
     with np.load(trace_path) as z:
         trace = {k: z[k] for k in z.files}
     validate_trace(trace, result)
     for field, hashfield in [('path', 'sha256'), ('dense_path', 'dense_sha256')]:
-        assert published.sha256(ROOT/result['reference'][field]) == result['reference'][hashfield]
+        assert published.sha256(artifact_path(result['reference'][field])) == result['reference'][hashfield]
     assert result['metrics']['median_abs_error_s'] == row['median_abs_error_s']
     return result, trace, [record(path), record(trace_path)]
 

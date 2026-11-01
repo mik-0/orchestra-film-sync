@@ -65,6 +65,7 @@ def main():
               loc='lower center', bbox_to_anchor=(0.5, 1.025), ncol=2,
               frameon=False, handlelength=1.3, columnspacing=2.0)
     fig.subplots_adjust(left=0.20, right=0.98, top=0.89, bottom=0.18)
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUTPUT, dpi=240, bbox_inches='tight')
     plt.close(fig)
     print(f'Wrote {OUTPUT}: 13 transitions, 7 offsets, 91 unchanged ratings')
