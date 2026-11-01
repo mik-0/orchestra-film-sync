@@ -22,6 +22,6 @@ The following small research labels are included because they define the procedu
 
 Cloning this repository does not provide these inputs. Some can be regenerated from recordings and the included annotations. Reproducing the thesis results also requires the reviewed alignments, saved traces, software versions and original sessions. The analysis scripts expect saved files under `shared/audio/output/`.
 
-## RQ layout and historical provenance
+## Reusing saved results
 
-[LAYOUT_MAP.json](LAYOUT_MAP.json) records the original and current source paths. Saved result JSON may refer to old `code/` paths. Its source hashes may also differ because imports and paths were updated. Preserve the original records and document any path changes needed to reuse them.
+Saved result JSON may refer to old `code/` paths. Its source hashes may also differ because imports and paths were updated. Preserve the original records and document any path changes needed to reuse them.

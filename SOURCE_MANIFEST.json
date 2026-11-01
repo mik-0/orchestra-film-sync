@@ -7,18 +7,13 @@
     },
     {
       "path": "INPUTS.md",
-      "bytes": 2443,
-      "sha256": "73cf4f8e2d9ab5f4b36d0d9e4ee17c9798f9b6fc3227a8b591b7729a69f5b75a"
-    },
-    {
-      "path": "LAYOUT_MAP.json",
-      "bytes": 8907,
-      "sha256": "ec89549ffd9bf498d8bfd4dff766a9479a6e83092be40826f0f89b39c03106df"
+      "bytes": 2347,
+      "sha256": "cd720ffa8b76c8d4e329780af1b7db51c3baeda912775868204c10cce2e88d45"
     },
     {
       "path": "README.md",
-      "bytes": 3152,
-      "sha256": "35b75100d33bac1aa4ac13e7c12ac244cbad6d376a648f6ac3de556d88f49420"
+      "bytes": 2894,
+      "sha256": "8849473b8534661df85d661e02acb3ef6c3fae518531aba809727b3323a3f100"
     },
     {
       "path": "RUNNING.md",
